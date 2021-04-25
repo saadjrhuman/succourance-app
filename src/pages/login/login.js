@@ -1,6 +1,8 @@
 import React, {useState, useEffect} from "react";
 import Login from './login2';
 import fire from './fire';
+import Hero from './Hero'; // import the first page after login
+import './login.css';
 function App() {
     const [user, setUser]= useState("");
     const [email, setEmail]=useState("");
@@ -77,17 +79,23 @@ function App() {
 
     return (
       <div className="App">
+          {user? (
+            <Hero  handleLogout={handleLogout}/> 
+          ): (
+              
         <Login
-            email={email}
-            setEmail={setEmail}
-            password={password}
-            setPassword={setPassword}handleLogin={handleLogin}
-            handleSignup={handleSignup}
-            hasAccount={hasAccount}
-            setHasAccount={setHasAccount}
-            emailError={emailError}
-            passwordError={passwordError}
-                />
+        email={email}
+        setEmail={setEmail}
+        password={password}
+        setPassword={setPassword}
+        handleLogin={handleLogin}
+        handleSignup={handleSignup}
+        hasAccount={hasAccount}
+        setHasAccount={setHasAccount}
+        emailError={emailError}
+        passwordError={passwordError}
+            />
+          )}
       </div>
-    );
+    ); // returning logout function to other pages with hero
   }
